@@ -1,0 +1,30 @@
+name: Pull Request Workflow
+
+# Define when this workflow will run.
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, closed]  # Trigger on PR events like opening, updating, etc.
+
+# Define the jobs within this workflow
+jobs:
+  run-tests:
+    runs-on: ubuntu-latest  # Choose an OS for the job
+    if: github.event.pull_request.merged == false || github.event.pull_request.merged == true
+    steps:
+      - name: Check out the code
+        uses: actions/checkout@v3
+
+      # Run tests (example)
+      - name: Run Tests
+        run: |
+          echo "Running tests on the pull request..."
+          # Your test commands here, e.g., npm test or make test
+
+  merge-actions:
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.merged == true
+    steps:
+      - name: Perform Post-Merge Actions
+        run: |
+          echo "Executing post-merge tasks..."
+          # Add your post-merge tasks here
