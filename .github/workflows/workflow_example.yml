@@ -17,6 +17,9 @@ jobs:
       # Run tests (example)
       - name: Run Tests
         run: |
+          git clone https://github.com/david050602/jenkins_test.git
+          cd jenkins_test
+          cat Jenkins_file_test
           echo "Running tests on the pull request..."
           # Your test commands here, e.g., npm test or make test
 
