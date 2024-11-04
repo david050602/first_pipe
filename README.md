@@ -1,4 +1,4 @@
 # first_pipe
 ```
-do push
+push first try
 ```
