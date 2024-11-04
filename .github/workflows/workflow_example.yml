@@ -1,27 +1,22 @@
 name: Pull Request Workflow
 
-# Define when this workflow will run.
 on:
   pull_request:
-    types: [opened, synchronize, reopened, closed]  # Trigger on PR events like opening, updating, etc.
-
-# Define the jobs within this workflow
+    types: [opened, synchronize, reopened, closed]
 jobs:
   run-tests:
-    runs-on: ubuntu-latest  # Choose an OS for the job
+    runs-on: ubuntu-latest
     if: github.event.pull_request.merged == false || github.event.pull_request.merged == true
     steps:
       - name: Check out the code
         uses: actions/checkout@v3
 
-      # Run tests (example)
       - name: Run Tests
         run: |
           git clone https://github.com/david050602/jenkins_test.git
           cd jenkins_test
           cat Jenkins_file_test
-          echo "Running tests on the pull request..."
-          # Your test commands here, e.g., npm test or make test
+          echo "Running tests on the pull request"
 
   merge-actions:
     runs-on: ubuntu-latest
@@ -29,5 +24,4 @@ jobs:
     steps:
       - name: Perform Post-Merge Actions
         run: |
-          echo "Executing post-merge tasks..."
-          # Add your post-merge tasks here
+          echo "Executing post-merge"
